@@ -1,0 +1,319 @@
+/* Import Google font - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: black;
+  color: white;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* 100% من ارتفاع الشاشة */
+  margin: 0;
+  overflow-y: auto; /* تغيير overflow-y إلى auto */
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px; /* عرض أقصى للعنصر */
+  height: 100vh; /* 100% من ارتفاع الشاشة */
+  justify-content: space-between;
+}
+
+.header {
+  text-align: center;
+  padding: 10px;
+  background-color: #000;
+  border-bottom: 1px solid #333;
+  width: 100%;
+}
+
+.chat-box {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-height: calc(100vh - 60px); /* ارتفاع ماكسيموم للمحادثة (100% الشاشة ناقص 60 بيكسل) */
+  overflow-y: auto;
+  border: 1px solid #333;
+  padding: 10px;
+  border-radius: 10px 10px 0 0;
+  background-color: #000;
+  margin-bottom: 0;
+  flex-grow: 1; /* يأخذ المساحة المتاحة */
+}
+
+.message {
+  max-width: 80%;
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
+  display: flex;
+  align-items: center;
+}
+
+.message.sent {
+  align-self: flex-end;
+  background-color: #ff0000;
+  border: 1px solid #ff0000;
+  box-shadow: 0 0 10px #ff0000;
+}
+
+.message.received {
+  align-self: flex-start;
+  background-color: #808080;
+  border: 1px solid #808080;
+  box-shadow: 0 0 10px #808080;
+}
+
+.input-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border-radius: 0 0 10px 10px;
+  background-color: #000;
+  border-top: 1px solid #333;
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+}
+
+.input {
+  color: white;
+  border: 2px solid #8707ff;
+  border-radius: 10px;
+  padding: 10px 25px;
+  background: transparent;
+  width: 90%; /* 90% من العرض الكلي للعنصر */
+  font-size: 16px; /* حجم الخط */
+}
+
+.input:focus {
+  outline: none;
+  box-shadow: 2px 2px 15px #8707ff inset;
+}
+
+@keyframes fadeIn {
+  from {
+ التعتيم: 0; 
+ } 
+  to {
+    opacity: 1;
+  }
+}
+
+/* استخدام نفس التصميم لزر التبديل والشات بوت */
+
+.chatbot-toggler {
+  position: fixed;
+  bottom: 30px;
+  right: 35px;
+  outline: none;
+  border: none;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #724ae8;
+  transition: all 0.2s ease;
+}
+
+body.show-chatbot .chatbot-toggler {
+  transform: rotate(90deg);
+}
+
+.chatbot-toggler span {
+  color: #fff;
+  position: absolute;
+}
+
+.chatbot-toggler span:last-child,
+body.show-chatbot .chatbot-toggler span:first-child  {
+  opacity: 0;
+}
+
+body.show-chatbot .chatbot-toggler span:last-child {
+  opacity: 1;
+}
+
+.chatbot {
+  position: fixed;
+  right: 35px;
+  bottom: 90px;
+  width: 420px;
+  background: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.5);
+  transform-origin: bottom right;
+  box-shadow: 0 0 128px 0 rgba(0,0,0,0.1),
+              0 32px 64px -48px rgba(0,0,0,0.5);
+  transition: all 0.1s ease;
+}
+
+body.show-chatbot .chatbot {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1);
+}
+
+.chatbot header {
+  padding: 16px 0;
+  position: relative;
+  text-align: center;
+  color: #fff;
+  background: #724ae8;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.chatbot header span {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  display: none;
+  cursor: pointer;
+ تحويل: ترجمة (-50٪) ؛ 
+}
+
+header h2 {
+  font-size: 1.4rem;
+}
+
+.chatbot.chatbox {
+  overflow-y: auto;
+  height: 510px;
+  padding: 30px 20px 100px;
+}
+
+.chatbot:where (.chatbox, textarea)::-webkit-scrollbar {
+ العرض: 6px؛ 
+}
+
+.chatbot:where (.chatbox, textarea)::-webkit-scrollbar-track {
+ الخلفية: #fff; 
+ دائرة نصف قطرها الحدود: 25px. 
+}
+
+.chatbot:where (.chatbox، textarea)::-webkit-scrollbar-thumb {
+ الخلفية: #ccc؛ 
+ دائرة نصف قطرها الحدود: 25px. 
+}
+
+.chatbox .chat {
+ عرض: المرن. 
+ قائمة على غرار: لا شيء؛ 
+}
+
+.chatbox. اصدر. {
+ الهامش: 20px 0؛ 
+ تبرير المحتوى: نهاية المرن. 
+}
+
+.chatbox.incoming span {
+ العرض: 32px. 
+ الارتفاع: 32px. 
+ اللون: #fff; 
+ المؤشر: الافتراضي؛ 
+ محاذاة النص: المركز؛ 
+ خط الارتفاع: 32.px. 
+ محاذاة النفس: المرن نهاية. 
+ الخلفية: #724ae8؛ 
+ دائرة نصف قطرها الحدود: 4.
+ الهامش: 0.10px 7px 0؛ 
+}
+
+.chatbox .chat p {{
+ الفضاء الأبيض: قبل.... التفاف. 
+ FISH: 12.
+ دائرة نصف قطرها الحدود: 10PX. 10
+ أقصى عرض: 75.
+ اللون: #fff; 
+ حجم الخط: 0.95rem. 
+ الخلفية: #724ae8؛ 
+}
+
+.chatbox. استرداد ص. {{
+ دائرة نصف قطرها الحدود: 10PX. 10PX 10PX 0. PX 10PX 10PX 0. 
+}
+
+.chatbox .chat p.error {{
+ اللون: #721c24. 
+ الخلفية: #f8d7da; 
+}
+
+.chatbox. استرداد ص. {{
+ اللون: #000; 
+ الخلفية: #f2؛ 
+}
+
+.chatbot.chat-input {{
+ عرض: المرن... 
+ الفجوة: 5.
+ الموقف: المطلق؛ المطلق؛ 
+ القاع: 0.
+ العرض: 100%.
+ الخلفية: #fff; 
+ FISH: 3.
+ الحدود الأعلى: 1PX. #ddd. 
+}
+
+.chat-إدخال منطقة النص {{
+ الارتفاع: 55px. px. الارتفاع: 55px. 
+ العرض: 100%؛ ؛ العرض: 100%؛ 
+ الحدود: لا شيء؛ لا شيء؛ 
+ الخطوط العريضة: لا.. شيء؛ 
+ تغيير الحجم: لا.. شيء؛ 
+ الحد الأقصى للارتفاع: 180.
+ ينم: 15.px 15px 0 ؛ px 15px 15px 0 ؛ 
+ حجم الخط: 0.95rem. 
+}
+
+.chat-input span {{
+ محاذاة النفس: المرن.. نهاية. 
+ اللون: #724ae8؛ 
+ المؤشر: مؤشر... 
+ الارتفاع: 55.
+ عرض: المرن... 
+ محاذاة البنود: مركز..; 
+/* استيراد خط جوجل - بوبينز */
+@import@import url ('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap') ؛url ('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap') ؛
+}
+
+  الهامش: 0؛ الهامش: 0.
+ غرامة: 0؛ ؛ FINE: 0; 
+ مربع الحجم: مربع. مربع. مربع مربع. 
+
+}{
+ .chatbot-toggler { { 
+الجسم. {{
+ الخلفية اللون: أسود..... 
+ اللون: أبيض؛ أبيض؛ 
+
+ عرض: المرن... 
+ تبرير المحتوى: مركز؛ مركز؛ 
+ محاذاة البنود: مركز..; 
+ الارتفاع: 100.vh; /* 100% من ارتفاع الشاشة */ vh; /* 100% من ارتفاع الشاشة */ 
+ الهامش: 0.؛ ؛ 
+ تجاوز-y: تلقائي؛ /* تغيير overflow-y إلى تلقائي */ تلقائي؛ /* تغيير overflow-y إلى تلقائي */ 
+}
+
+.chat-container {
+ عرض: المرن. 
+ فليكس الاتجاه: العمود؛ العمود؛ 
+ العرض: 100%.؛ ؛ 
+}
